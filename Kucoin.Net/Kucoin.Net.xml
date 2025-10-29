@@ -531,6 +531,9 @@
         <member name="M:Kucoin.Net.Clients.SpotApi.KucoinRestClientSpotApiAccount.GetApiKeyInfoAsync(System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
+        <member name="M:Kucoin.Net.Clients.SpotApi.KucoinRestClientSpotApiAccount.GetEarnHoldingAsync(System.String,System.String,System.Nullable{Kucoin.Net.Enums.EarnProductCategory},System.Nullable{System.Int32},System.Nullable{System.Int32},System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
         <member name="T:Kucoin.Net.Clients.SpotApi.KucoinRestClientSpotApiExchangeData">
             <inheritdoc />
         </member>
@@ -1042,6 +1045,16 @@
             Defines the source generated JSON serialization contract metadata for a given type.
             </summary>
         </member>
+        <member name="P:Kucoin.Net.Converters.KucoinSourceGenerationContext.EarnHoldingStatus">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:Kucoin.Net.Converters.KucoinSourceGenerationContext.EarnProductCategory">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
         <member name="P:Kucoin.Net.Converters.KucoinSourceGenerationContext.ExtendedOrderStatus">
             <summary>
             Defines the source generated JSON serialization contract metadata for a given type.
@@ -1533,6 +1546,11 @@
             </summary>
         </member>
         <member name="P:Kucoin.Net.Converters.KucoinSourceGenerationContext.KucoinResultKucoinPaginatedKucoinDeposit">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:Kucoin.Net.Converters.KucoinSourceGenerationContext.KucoinResultKucoinPaginatedKucoinEarnHolding">
             <summary>
             Defines the source generated JSON serialization contract metadata for a given type.
             </summary>
@@ -2622,6 +2640,11 @@
             Defines the source generated JSON serialization contract metadata for a given type.
             </summary>
         </member>
+        <member name="P:Kucoin.Net.Converters.KucoinSourceGenerationContext.KucoinPaginatedKucoinEarnHolding">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
         <member name="P:Kucoin.Net.Converters.KucoinSourceGenerationContext.KucoinPaginatedKucoinHfOrderDetails">
             <summary>
             Defines the source generated JSON serialization contract metadata for a given type.
@@ -3038,6 +3061,16 @@
             </summary>
         </member>
         <member name="P:Kucoin.Net.Converters.KucoinSourceGenerationContext.KucoinDepositAddressArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:Kucoin.Net.Converters.KucoinSourceGenerationContext.KucoinEarnHolding">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:Kucoin.Net.Converters.KucoinSourceGenerationContext.KucoinEarnHoldingArray">
             <summary>
             Defines the source generated JSON serialization contract metadata for a given type.
             </summary>
@@ -4761,6 +4794,51 @@
         <member name="F:Kucoin.Net.Enums.DepositStatus.Failure">
             <summary>
             Failed
+            </summary>
+        </member>
+        <member name="T:Kucoin.Net.Enums.EarnHoldingStatus">
+            <summary>
+            Status of an earn holding
+            </summary>
+        </member>
+        <member name="F:Kucoin.Net.Enums.EarnHoldingStatus.Locked">
+            <summary>
+            Locked
+            </summary>
+        </member>
+        <member name="F:Kucoin.Net.Enums.EarnHoldingStatus.Redeeming">
+            <summary>
+            Redeeming
+            </summary>
+        </member>
+        <member name="T:Kucoin.Net.Enums.EarnProductCategory">
+            <summary>
+            Category of an earn product
+            </summary>
+        </member>
+        <member name="F:Kucoin.Net.Enums.EarnProductCategory.Demand">
+            <summary>
+            Demand
+            </summary>
+        </member>
+        <member name="F:Kucoin.Net.Enums.EarnProductCategory.Activity">
+            <summary>
+            Activity
+            </summary>
+        </member>
+        <member name="F:Kucoin.Net.Enums.EarnProductCategory.Staking">
+            <summary>
+            Staking
+            </summary>
+        </member>
+        <member name="F:Kucoin.Net.Enums.EarnProductCategory.KCSStaking">
+            <summary>
+            KCS Staking
+            </summary>
+        </member>
+        <member name="F:Kucoin.Net.Enums.EarnProductCategory.ETH2">
+            <summary>
+            ETH2 Staking
             </summary>
         </member>
         <member name="T:Kucoin.Net.Enums.ExtendedOrderStatus">
@@ -7147,6 +7225,19 @@
             Get API key info
             <para><a href="https://www.kucoin.com/docs-new/rest/account-info/account-funding/get-apikey-info" /></para>
             </summary>
+            <param name="ct">Cancellation token</param>
+            <returns></returns>
+        </member>
+        <member name="M:Kucoin.Net.Interfaces.Clients.SpotApi.IKucoinRestClientSpotApiAccount.GetEarnHoldingAsync(System.String,System.String,System.Nullable{Kucoin.Net.Enums.EarnProductCategory},System.Nullable{System.Int32},System.Nullable{System.Int32},System.Threading.CancellationToken)">
+            <summary>
+            Get information on currently held assets. If no assets are currently held, an empty list is returned.
+            <para><a href="https://www.kucoin.com/docs-new/rest/earn/get-account-holding" /></para>
+            </summary>
+            <param name="asset">Filter by asset, for example `ETH`</param>
+            <param name="productId">Filter by product id</param>
+            <param name="productCategory">Filter by product category</param>
+            <param name="page">Current request page.</param>
+            <param name="pageSize">Number of results per request. Minimum is 10, maximum is 500.</param>
             <param name="ct">Cancellation token</param>
             <returns></returns>
         </member>
@@ -13202,6 +13293,91 @@
         <member name="P:Kucoin.Net.Objects.Models.Spot.KucoinDepositAddress.ExpirationTime">
             <summary>
             Expiration time
+            </summary>
+        </member>
+        <member name="T:Kucoin.Net.Objects.Models.Spot.KucoinEarnHolding">
+            <summary>
+            Earn account holding info
+            </summary>
+        </member>
+        <member name="P:Kucoin.Net.Objects.Models.Spot.KucoinEarnHolding.OrderId">
+            <summary>
+            Holding ID
+            </summary>
+        </member>
+        <member name="P:Kucoin.Net.Objects.Models.Spot.KucoinEarnHolding.ProductId">
+            <summary>
+            Product ID
+            </summary>
+        </member>
+        <member name="P:Kucoin.Net.Objects.Models.Spot.KucoinEarnHolding.ProductCategory">
+            <summary>
+            Product category
+            </summary>
+        </member>
+        <member name="P:Kucoin.Net.Objects.Models.Spot.KucoinEarnHolding.ProductType">
+            <summary>
+            Product sub-type
+            </summary>
+        </member>
+        <member name="P:Kucoin.Net.Objects.Models.Spot.KucoinEarnHolding.Asset">
+            <summary>
+            Hold asset
+            </summary>
+        </member>
+        <member name="P:Kucoin.Net.Objects.Models.Spot.KucoinEarnHolding.IncomeAsset">
+            <summary>
+            Income asset
+            </summary>
+        </member>
+        <member name="P:Kucoin.Net.Objects.Models.Spot.KucoinEarnHolding.ReturnRate">
+            <summary>
+            Annualized Rate of Return, for example, 0.035 is equal to 3.5% annualized rate of return
+            </summary>
+        </member>
+        <member name="P:Kucoin.Net.Objects.Models.Spot.KucoinEarnHolding.HoldAmount">
+            <summary>
+            Holding amount
+            </summary>
+        </member>
+        <member name="P:Kucoin.Net.Objects.Models.Spot.KucoinEarnHolding.RedeemedAmount">
+            <summary>
+            Redeemed amount
+            </summary>
+        </member>
+        <member name="P:Kucoin.Net.Objects.Models.Spot.KucoinEarnHolding.RedeemingAmount">
+            <summary>
+            Redeeming amount
+            </summary>
+        </member>
+        <member name="P:Kucoin.Net.Objects.Models.Spot.KucoinEarnHolding.LockStartTime">
+            <summary>
+            Product earliest interest start time
+            </summary>
+        </member>
+        <member name="P:Kucoin.Net.Objects.Models.Spot.KucoinEarnHolding.LockEndTime">
+            <summary>
+            Product maturity time
+            </summary>
+        </member>
+        <member name="P:Kucoin.Net.Objects.Models.Spot.KucoinEarnHolding.PurchaseTime">
+            <summary>
+            Most recent subscription time
+            </summary>
+        </member>
+        <member name="P:Kucoin.Net.Objects.Models.Spot.KucoinEarnHolding.RedeemPeriod">
+            <summary>
+            Redemption waiting period (days)
+            </summary>
+        </member>
+        <member name="P:Kucoin.Net.Objects.Models.Spot.KucoinEarnHolding.Status">
+            <summary>
+            Status
+            </summary>
+        </member>
+        <member name="P:Kucoin.Net.Objects.Models.Spot.KucoinEarnHolding.EarlyRedeemable">
+            <summary>
+            Whether the fixed product supports early redemption
             </summary>
         </member>
         <member name="T:Kucoin.Net.Objects.Models.Spot.KucoinHfBulkOrderRequestEntry">

@@ -1,4 +1,6 @@
-﻿using CryptoExchange.Net;
+﻿using System;
+using System.Collections.Generic;
+using CryptoExchange.Net;
 using CryptoExchange.Net.Converters;
 using CryptoExchange.Net.Objects;
 using CryptoExchange.Net.RateLimiting;
@@ -8,8 +10,6 @@ using CryptoExchange.Net.RateLimiting.Interfaces;
 using CryptoExchange.Net.SharedApis;
 using Kucoin.Net.Converters;
 using Kucoin.Net.Enums;
-using System;
-using System.Collections.Generic;
 
 namespace Kucoin.Net
 {
@@ -139,6 +139,7 @@ namespace Kucoin.Net
         internal IRateLimitGate SpotRest { get; private set; }
         internal IRateLimitGate FuturesRest { get; private set; }
         internal IRateLimitGate ManagementRest { get; private set; }
+        internal IRateLimitGate EarnRest { get; private set; }
         internal IRateLimitGate PublicRest { get; private set; }
         internal IRateLimitGate Socket { get; private set; }
 
@@ -179,6 +180,7 @@ namespace Kucoin.Net
             SpotRest = new RateLimitGate("Spot Rest").AddGuard(new RateLimitGuard(RateLimitGuard.PerHost, Array.Empty<IGuardFilter>(), _spotLimits[VipLevel], TimeSpan.FromSeconds(30), RateLimitWindowType.FixedAfterFirst)); // Might be fixed but from the first request timestamp instead of the the whole interval
             FuturesRest = new RateLimitGate("Futures Rest").AddGuard(new RateLimitGuard(RateLimitGuard.PerHost, Array.Empty<IGuardFilter>(), _futuresLimits[VipLevel], TimeSpan.FromSeconds(30), RateLimitWindowType.FixedAfterFirst)); // Might be fixed but from the first request timestamp instead of the the whole interval
             ManagementRest = new RateLimitGate("Management Rest").AddGuard(new RateLimitGuard(RateLimitGuard.PerHost, Array.Empty<IGuardFilter>(), _managementLimits[VipLevel], TimeSpan.FromSeconds(30), RateLimitWindowType.FixedAfterFirst)); // Might be fixed but from the first request timestamp instead of the the whole interval
+            EarnRest = new RateLimitGate("Earn Rest").AddGuard(new RateLimitGuard(RateLimitGuard.PerHost, Array.Empty<IGuardFilter>(), 2000, TimeSpan.FromSeconds(30), RateLimitWindowType.FixedAfterFirst)); // Might be fixed but from the first request timestamp instead of the the whole interval
             PublicRest = new RateLimitGate("Public Rest").AddGuard(new RateLimitGuard(RateLimitGuard.PerHost, Array.Empty<IGuardFilter>(), 2000, TimeSpan.FromSeconds(30), RateLimitWindowType.FixedAfterFirst)); // Might be fixed but from the first request timestamp instead of the the whole interval
             Socket = new RateLimitGate("Socket")
                     .AddGuard(new RateLimitGuard(RateLimitGuard.PerHost, new LimitItemTypeFilter(RateLimitItemType.Connection), 30, TimeSpan.FromMinutes(1), RateLimitWindowType.Fixed))
@@ -190,6 +192,8 @@ namespace Kucoin.Net
             FuturesRest.RateLimitUpdated += (x) => RateLimitUpdated?.Invoke(x);
             ManagementRest.RateLimitTriggered += (x) => RateLimitTriggered?.Invoke(x);
             ManagementRest.RateLimitUpdated += (x) => RateLimitUpdated?.Invoke(x);
+            EarnRest.RateLimitTriggered += (x) => RateLimitTriggered?.Invoke(x);
+            EarnRest.RateLimitUpdated += (x) => RateLimitUpdated?.Invoke(x);
             PublicRest.RateLimitTriggered += (x) => RateLimitTriggered?.Invoke(x);
             PublicRest.RateLimitUpdated += (x) => RateLimitUpdated?.Invoke(x);
             Socket.RateLimitTriggered += (x) => RateLimitTriggered?.Invoke(x);
