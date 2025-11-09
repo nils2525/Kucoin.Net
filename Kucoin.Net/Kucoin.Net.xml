@@ -5100,6 +5100,11 @@
             KuCoin Earn Profits
             </summary>
         </member>
+        <member name="F:Kucoin.Net.Enums.BizType.HoldToEarnEarnings">
+            <summary>
+            Hold to Earn Earnings
+            </summary>
+        </member>
         <member name="T:Kucoin.Net.Enums.BizTypeFilter">
             <summary>
             Biz type filter
