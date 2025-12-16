@@ -6,6 +6,7 @@ Kucoin.Net is a strongly typed client library for accessing the [Kucoin REST and
 ## Features
 * Response data is mapped to descriptive models
 * Input parameters and response values are mapped to discriptive enum values where possible
+* High performance
 * Automatic websocket (re)connection management 
 * Client side rate limiting 
 * Client side order book implementation
@@ -16,7 +17,7 @@ Kucoin.Net is a strongly typed client library for accessing the [Kucoin REST and
 * Native AOT support
 
 ## Supported Frameworks
-The library is targeting both `.NET Standard 2.0` and `.NET Standard 2.1` for optimal compatibility
+The library is targeting both `.NET Standard 2.0` and `.NET Standard 2.1` for optimal compatibility, as well as the latest dotnet versions to use the latest framework features.
 
 |.NET implementation|Version Support|
 |--|--|
@@ -161,6 +162,19 @@ Make a one time donation in a crypto currency of your choice. If you prefer to d
 Alternatively, sponsor me on Github using [Github Sponsors](https://github.com/sponsors/JKorf). 
 
 ## Release notes
+* Version 8.0.0 - 16 Dec 2025
+    * Added Net10.0 target framework
+    * Updated CryptoExchange.Net version to 10.0.0, see https://github.com/JKorf/CryptoExchange.Net/releases/ for full release notes
+    * Improved performance across the board, biggest gains in websocket message processing
+    * Updated REST message response handling
+    * Updated WebSocket message handling
+    * Added UseUpdatedDeserialization socket client options to toggle by new and old message handling
+    * Added SocketIndividualSubscriptionCombineTarget socket client option
+    * Added missing enum values to BizType
+    * Added EffectiveFundingRateCycleStartTime and CurrentFundingRateGranularity to KucoinContract model
+    * Added AvailableMargin to KucoinAccountOverview model
+    * Updated Shared API's subscription update types from ExchangeEvent to DataEvent
+
 * Version 7.11.0 - 11 Nov 2025
     * Updated CryptoExchange.Net version to 9.13.0, see https://github.com/JKorf/CryptoExchange.Net/releases/
     * Added positionSide parameters to futures order endpoints

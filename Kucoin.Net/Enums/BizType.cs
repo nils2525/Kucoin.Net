@@ -1,5 +1,3 @@
-using System.Text.Json.Serialization;
-using CryptoExchange.Net.Converters.SystemTextJson;
 using CryptoExchange.Net.Attributes;
 
 namespace Kucoin.Net.Enums
@@ -264,6 +262,26 @@ namespace Kucoin.Net.Enums
         /// Hold to Earn Earnings
         /// </summary>
         [Map("Hold to Earn Earnings")]
-        HoldToEarnEarnings
+        HoldToEarnEarnings,
+        /// <summary>
+        /// Fee Refunds using KCS
+        /// </summary>
+        [Map("Fee Refunds using KCS")]
+        FeeRefundsKcs,
+        /// <summary>
+        /// KCS Fee Deduction
+        /// </summary>
+        [Map("KCS Fee Deduction")]
+        KcsFeeDeduction,
+        /// <summary>
+        /// Spot
+        /// </summary>
+        [Map("Spot")]
+        Spot,
+        /// <summary>
+        /// Rebate
+        /// </summary>
+        [Map("Rebate")]
+        Rebate
     }
 }
